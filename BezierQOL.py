@@ -1,4 +1,5 @@
 import math
+import mpmath
 
 def IterationsQuery():
     try:
@@ -53,7 +54,7 @@ def ittrLnLoop(ittr,j,letters):
             ittrLnLoop(ittr-1,j+1,letters)
 
 def nCr(n, r):
-    return math.factorial(n) // (math.factorial(r) * math.factorial(n - r))
+    return mpmath.comb(n, r)
 
 iterations = IterationsQuery()
 print("")
