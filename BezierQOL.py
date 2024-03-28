@@ -1,5 +1,5 @@
 import math
-import mpmath
+import sympy as sp
 
 def IterationsQuery():
     try:
@@ -10,13 +10,14 @@ def IterationsQuery():
 def generate_bezier_x_expression(control_points):
     expression = ""
     n = len(control_points) - 1
+    t = sp.symbols('t')
 
     for i in range(n + 1):
         coefficient = nCr(n, i)
-        t_term = f"t^{i}" if i > 0 else "1"
-        one_minus_t_term = f"(1-t)^{n-i}" if (n - i) > 0 else "1"
+        t_term = f"{t}^{i}" if i > 0 else "1"
+        one_minus_t_term = f"(1 - {t})^{n-i}" if (n - i) > 0 else "1"
         control_point = f"t_{{a{i+1}x}}"  # Adjust index for control point naming
-        bernstein_poly = f"{coefficient}\\cdot {t_term}\\cdot {one_minus_t_term}\\cdot {control_point}"
+        bernstein_poly = f"{coefficient} \\cdot {t_term} \\cdot {one_minus_t_term} \\cdot {control_point}"
         if i < n:
             expression += f"{bernstein_poly} + "
         else:
@@ -24,16 +25,18 @@ def generate_bezier_x_expression(control_points):
 
     return expression
 
+
 def generate_bezier_y_expression(control_points):
     expression = ""
     n = len(control_points) - 1
+    t = sp.symbols('t')
 
     for i in range(n + 1):
         coefficient = nCr(n, i)
-        t_term = f"t^{i}" if i > 0 else "1"
-        one_minus_t_term = f"(1-t)^{n-i}" if (n - i) > 0 else "1"
+        t_term = f"{t}^{i}" if i > 0 else "1"
+        one_minus_t_term = f"(1 - {t})^{n-i}" if (n - i) > 0 else "1"
         control_point = f"t_{{a{i+1}y}}"  # Adjust index for control point naming
-        bernstein_poly = f"{coefficient}\\cdot {t_term}\\cdot {one_minus_t_term}\\cdot {control_point}"
+        bernstein_poly = f"{coefficient} \\cdot {t_term} \\cdot {one_minus_t_term} \\cdot {control_point}"
         if i < n:
             expression += f"{bernstein_poly} + "
         else:
@@ -54,7 +57,7 @@ def ittrLnLoop(ittr,j,letters):
             ittrLnLoop(ittr-1,j+1,letters)
 
 def nCr(n, r):
-    return mpmath.comb(n, r)
+    return math.comb(n, r)
 
 iterations = IterationsQuery()
 print("")
