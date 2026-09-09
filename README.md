@@ -5,5 +5,5 @@ For info on how to implement equations, look at this example: https://www.desmos
 
 NOTE: The more iterations you do, the more inaccurate the equations get (More Issues listed in notes on Desmos example).
 
-How to reach me: Drachoub09@gmail.com 
+How to reach me: dont.
 © 2024 Skulzry. All rights Reserved
